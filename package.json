@@ -1,0 +1,24 @@
+{
+  "name": "gateio-nodejs-api",
+  "version": "1.0.0",
+  "description": "This service was created simply for GateIO spot API transactions. The heavily used processes were simplified and coded on a single page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NpmPackage/gateio.git"
+  },
+  "keywords": [
+    "Gateio Api",
+    "Gateio npm api",
+    "Gateio Nodejs api"
+  ],
+  "author": "Baris Demir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NpmPackage/gateio/issues"
+  },
+  "homepage": "https://github.com/NpmPackage/gateio#readme"
+}
