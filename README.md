@@ -35,8 +35,8 @@ client = gateioApi()
 ```
 #### Import for private (auth required) endpoints
 ```js
-const btcTurkClient = require('gateio')
-client = binanceApi(API_KEY, API_SECRET)
+const gateioApi = require('gateio')
+client = gateioApi(API_KEY, API_SECRET)
 ```
 ## Usage
 
