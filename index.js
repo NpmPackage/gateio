@@ -138,7 +138,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
             });
         } catch (error) {
 
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
     /**
@@ -193,7 +193,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
             });
 
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
     /**
@@ -242,7 +242,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
             });
 
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
     /**
@@ -295,7 +295,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
             });
 
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
     /**
@@ -343,7 +343,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
             });
 
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
 
@@ -395,7 +395,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
             }
             return res;
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
     async function withdrawals(currency = null) {
@@ -409,7 +409,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
                 throw new Error(e.message || e)
             });
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
 
@@ -460,7 +460,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
                 throw new Error(e.message || e)
             });
         } catch (error) {
-            console.log(error.message)
+             throw new Error(e.message || e)
         }
     }
 
@@ -500,7 +500,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
                 throw new Error(e.message || e)
             });
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
     /**
@@ -562,7 +562,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
                 throw new Error(e.message || e)
             });
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
     /**
@@ -608,7 +608,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
                 throw new Error(e.message || e)
             });
         } catch (error) {
-            console.log(error.message)
+            throw new Error(e.message || e)
         }
     }
 
