@@ -611,6 +611,20 @@ module.exports = function (apiKey = null, apiSecret = null) {
             throw new Error(error.message || error)
         }
     }
+    async function history(currency_pair) {
+        try {
+            path = `/api/v4/spot/my_trades/`
+            que = {
+                currency_pair
+            }
+            return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                throw new Error(e.message || e)
+            });
+        } catch (error) {
+            throw new Error(error.message || error)
+        }
+    }
+    
 
     return {
         myWallet,
@@ -623,6 +637,7 @@ module.exports = function (apiKey = null, apiSecret = null) {
         pairs,
         trades,
         tickers,
-        order_book
+        order_book,
+        history
     };
 }
