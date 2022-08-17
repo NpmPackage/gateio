@@ -1,6 +1,6 @@
 {
   "name": "gateio-nodejs-api",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This service was created simply for GateIO spot API transactions. The heavily used processes were simplified and coded on a single page",
   "main": "index.js",
   "scripts": {
