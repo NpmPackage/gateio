@@ -1,7 +1,7 @@
 # GateIO nodejs api
 
 ```
-https://www.npmjs.com/package/gateio
+https://www.npmjs.com/package/gateio-nodejs-api
 
 ```
 
@@ -9,7 +9,7 @@ https://www.npmjs.com/package/gateio
 ## Installation
 
 ```
-npm install gateio
+npm install gateio-nodejs-api
 ```
 
 
