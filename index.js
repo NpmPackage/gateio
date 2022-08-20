@@ -261,13 +261,11 @@
              }
          ]
       */
-     async function deposits_list(currency = null, from = null, to = null, limit = 100) {
+     async function deposits_list(currency = null, from = 30, to = null, limit = 100) {
          try {
-             que = { limit }
+             que = { limit,from }
              if (currency)
                  que = { ...que, currency }
-             if (from)
-                 que = { ...que, from }
              if (to)
                  que = { ...que, to }
              path = '/api/v4/wallet/deposits'
@@ -300,13 +298,11 @@
              }
          ]
       */
-     async function withdrawals_list(currency = null, from = null, to = null, limit = 100) {
+     async function withdrawals_list(currency = null, from = 30, to = null, limit = 100) {
          try {
-             que = { limit }
+             que = { limit ,from}
              if (currency)
                  que = { ...que, currency }
-             if (from)
-                 que = { ...que, from }
              if (to)
                  que = { ...que, to }
              path = '/api/v4/wallet/withdrawals'
