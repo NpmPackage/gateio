@@ -243,8 +243,8 @@
      /**
       * 
       * @param {} currency 
-      * @param {} from 
-      * @param {} to 
+      * @param {} from date 2022-08-01 
+      * @param {} to   date 2022-08-20
       * @param {} limit 
       * @returns 
       *  [
@@ -261,13 +261,26 @@
              }
          ]
       */
-     async function deposits_list(currency = null, from = 30, to = null, limit = 100) {
+     async function deposits_list(currency = null, from = null, to = null, limit = 100) {
          try {
-             que = { limit,from }
+ 
+             que = { limit }
+             const date = new Date();
+             if (!from) from = Math.floor(date.setDate(date.getDate() - 29));
+             else {
+                 from = new Date(from);
+                 from = Math.floor(from.getTime() / 1000);
+             }
+             if (!to) to = Math.floor(date.setDate(date.getDate()));
+             else {
+                 to = new Date(to);
+                 to = Math.floor(to.getTime() / 1000);
+             }
+             que = { ...que, from, to }
+ 
              if (currency)
                  que = { ...que, currency }
-             if (to)
-                 que = { ...que, to }
+ 
              path = '/api/v4/wallet/deposits'
              return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
                  throw new Error(e.message || e)
@@ -280,8 +293,8 @@
      /**
       * 
       * @param {} currency 
-      * @param {} from 
-      * @param {} to 
+      * @param {} from date 2022-08-01 
+      * @param {} to   date 2022-08-20
       * @param {} limit 
       * @returns 
       * [
@@ -298,9 +311,24 @@
              }
          ]
       */
-     async function withdrawals_list(currency = null, from = 30, to = null, limit = 100) {
+     async function withdrawals_list(currency = null, from = null, to = null, limit = 100) {
          try {
-             que = { limit ,from}
+ 
+             const date = new Date();
+             if (!from) from = Math.floor(date.setDate(date.getDate() - 29));
+             else {
+                 from = new Date(from);
+                 from = Math.floor(from.getTime() / 1000);
+             }
+             if (!to) to = Math.floor(date.setDate(date.getDate()));
+             else {
+                 to = new Date(to);
+                 to = Math.floor(to.getTime() / 1000);
+             }
+             que = { ...que, from, to }
+ 
+ 
+             que = { limit, from }
              if (currency)
                  que = { ...que, currency }
              if (to)

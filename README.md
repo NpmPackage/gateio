@@ -108,8 +108,8 @@ client = gateioApi(API_KEY, API_SECRET)
 - ### withdrawals_list
 
      * @param {} currency 
-     * @param {} from 
-     * @param {} to 
+     * @param {} from date 2022-08-01
+     * @param {} to   date 2022-08-20
      * @param {} limit 
   ```js
 
@@ -136,8 +136,8 @@ client = gateioApi(API_KEY, API_SECRET)
   ```
   - ### deposits_list
      * @param {} currency 
-     * @param {} from 
-     * @param {} to 
+     * @param {} from date 2022-08-01
+     * @param {} to   date 2022-08-20
      * @param {} limit
   ```js
 
