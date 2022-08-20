@@ -142,6 +142,272 @@
          }
      }
      /**
+      * 
+      * @param {*} currency 
+      * Currency unit used to calculate the balance amount. BTC, CNY, USD and USDT are allowed. USDT is the default.
+      * @returns 
+      * {
+         total: { amount: '65.6720817126853324', currency: 'USDT' },
+         details: {
+             cbbc: { amount: '0', currency: 'USDT' },
+             cross_margin: { amount: '0', currency: 'USDT' },
+             delivery: { amount: '0', currency: 'USDT' },
+             finance: { amount: '0', currency: 'USDT' },
+             futures: { amount: '0', currency: 'USDT' },
+             margin: { amount: '0', currency: 'USDT' },
+             quant: { amount: '0', currency: 'USDT' },
+             spot: { amount: '65.6720817126853324', currency: 'USDT' }
+         }
+         }
+      */
+     async function total_balance(currency = "") {
+         try {
+             if (currency)
+                 que = {
+                     currency
+                 }
+             path = '/api/v4/wallet/total_balance'
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+ 
+             throw new Error(error.message || error)
+         }
+     }
+ 
+     /**
+      * 
+      * @param {*} currency_pair 
+      * @returns 
+      * {
+         "user_id": 10001,
+         "taker_fee": "0.002",
+         "maker_fee": "0.002",
+         "futures_taker_fee": "-0.00025",
+         "futures_maker_fee": "0.00075",
+         "gt_discount": false,
+         "gt_taker_fee": "0",
+         "gt_maker_fee": "0",
+         "loan_fee": "0.18",
+         "point_type": "1"
+         }
+      */
+     async function fee(currency_pair = "") {
+         try {
+             if (currency_pair)
+                 que = {
+                     currency_pair
+                 }
+             path = '/api/v4/wallet/fee'
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+ 
+             throw new Error(error.message || error)
+         }
+     }
+     /**
+      * 
+      * @param {*} currency 
+      * @param {*} chain 
+      * @returns 
+      * [
+             {
+                 "currency": "usdt",
+                 "chain": "TRX",
+                 "address": "TWYirLzw2RARB2jfeFcfRPmeuU3rC7rakT",
+                 "name": "gate",
+                 "tag": "",
+                 "verified": "1"
+             }
+        ]
+      */
+     async function saved_address(currency, chain = null) {
+         try {
+             que = {
+                 currency
+             }
+             if (chain)
+                 que = { ...que, chain }
+             path = '/api/v4/wallet/saved_address'
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+ 
+             throw new Error(error.message || error)
+         }
+     }
+     /**
+      * 
+      * @param {} currency 
+      * @param {} from 
+      * @param {} to 
+      * @param {} limit 
+      * @returns 
+      *  [
+             {
+                 "id": "210496",
+                 "timestamp": "1542000000",
+                 "currency": "USDT",
+                 "address": "1HkxtBAMrA3tP5ENnYY2CZortjZvFDH5Cs",
+                 "txid": "128988928203223323290",
+                 "amount": "222.61",
+                 "memo": "",
+                 "status": "DONE",
+                 "chain": "TRX"
+             }
+         ]
+      */
+     async function deposits_list(currency = null, from = null, to = null, limit = 100) {
+         try {
+             que = { limit }
+             if (currency)
+                 que = { ...que, currency }
+             if (from)
+                 que = { ...que, from }
+             if (to)
+                 que = { ...que, to }
+             path = '/api/v4/wallet/deposits'
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+ 
+             throw new Error(error.message || error)
+         }
+     }
+     /**
+      * 
+      * @param {} currency 
+      * @param {} from 
+      * @param {} to 
+      * @param {} limit 
+      * @returns 
+      * [
+             {
+                 "id": "210496",
+                 "timestamp": "1542000000",
+                 "currency": "USDT",
+                 "address": "1HkxtBAMrA3tP5ENnYY2CZortjZvFDH5Cs",
+                 "txid": "128988928203223323290",
+                 "amount": "222.61",
+                 "memo": "",
+                 "status": "DONE",
+                 "chain": "TRX"
+             }
+         ]
+      */
+     async function withdrawals_list(currency = null, from = null, to = null, limit = 100) {
+         try {
+             que = { limit }
+             if (currency)
+                 que = { ...que, currency }
+             if (from)
+                 que = { ...que, from }
+             if (to)
+                 que = { ...que, to }
+             path = '/api/v4/wallet/withdrawals'
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+ 
+             throw new Error(error.message || error)
+         }
+     }
+     /**
+      * 
+      * @param {*} currency 
+      * @returns 
+      * {
+       currency: 'USDT',
+       address: '1CGBAFNEXWnLjUbNTp2tytS6JeNu3Phsyh',
+       multichain_addresses: [
+         {
+           chain: 'BTC',
+           address: '1CGBAFNEXWnLjUbNTp2tytS6JeNu3Phsyh',
+           payment_id: '',
+           payment_name: '',
+           obtain_failed: 0
+         },
+         {
+           chain: 'ETH',
+           address: '0x60dE1F4098d8d765c87aaF916fA15549EC0f9B6d',
+           payment_id: '',
+           payment_name: '',
+           obtain_failed: 0
+         },
+         {
+           chain: 'TRX',
+           address: 'TJoPxncwTgZNMrwMNWBa4BgLb6f3cLGEKg',
+           payment_id: '',
+           payment_name: '',
+           obtain_failed: 0
+         }
+       ]
+     }
+      */
+     async function deposit_address(currency) {
+         try {
+             que = { currency }
+             path = '/api/v4/wallet/deposit_address'
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+ 
+             throw new Error(error.message || error)
+         }
+     }
+     /**
+      * 
+      * @param {*} currency 
+      * @returns 
+      * [
+             {
+                 chain: 'BTC',
+                 name_cn: '比特币OMNI',
+                 name_en: 'BTC/OMNI',
+                 is_disabled: 0,
+                 is_deposit_disabled: 0,
+                 is_withdraw_disabled: 0
+             },
+             {
+                 chain: 'ETH',
+                 name_cn: '以太坊ERC20',
+                 name_en: 'ETH/ERC20',
+                 is_disabled: 0,
+                 is_deposit_disabled: 0,
+                 is_withdraw_disabled: 0
+             },
+             {
+                 chain: 'TRX',
+                 name_cn: '波场TRC20',
+                 name_en: 'Tron/TRC20',
+                 is_disabled: 0,
+                 is_deposit_disabled: 0,
+                 is_withdraw_disabled: 0
+             }
+          ]
+      */
+     async function currency_chains(currency) {
+         try {
+             que = { currency }
+             path = '/api/v4/wallet/currency_chains'
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+ 
+             throw new Error(error.message || error)
+         }
+     }
+ 
+ 
+     /**
      * 
      * @param {*} symbol  string
      * @param {*} quantity  string
@@ -300,6 +566,68 @@
      }
      /**
       * 
+      * @param {*} currency_pair 
+      * @param {*} status 
+      * @param {} side 
+      * @param {} page 
+      * @param {} limit 
+      * @returns 
+     * [
+             {
+                 id: '192133015275',
+                 text: '101',
+                 create_time: '1660916180',
+                 update_time: '1660916180',
+                 create_time_ms: 1660916180111,
+                 update_time_ms: 1660916180111,
+                 status: 'closed',
+                 currency_pair: 'GALA_USDT',
+                 type: 'limit',
+                 account: 'spot',
+                 side: 'buy',
+                 amount: '465.55',
+                 price: '0.053164',
+                 time_in_force: 'gtc',
+                 iceberg: '0',
+                 left: '0.00',
+                 fill_price: '24.75003465',
+                 filled_total: '24.75003465',
+                 fee: '0.83799',
+                 fee_currency: 'GALA',
+                 point_fee: '0',
+                 gt_fee: '0',
+                 gt_discount: false,
+                 rebated_fee_currency: 'USDT'
+             }
+         ]
+      */
+     async function listOrders(currency_pair = null, status = 'finished', side = null, page = null, limit = 100) {
+         try {
+ 
+             que = { limit, status }
+             path = `/api/v4/spot/orders`
+             if (currency_pair) {
+                 que = { ...que, currency_pair }
+             }
+             if (currency_pair) {
+                 que = { ...que, currency_pair }
+             }
+             if (side) {
+                 que = { ...que, side }
+             }
+             if (page) {
+                 que = { ...que, page }
+             }
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+ 
+         } catch (error) {
+             throw new Error(error.message || error)
+         }
+     }
+     /**
+      * 
       * @param {*} order_id 
       * @param {*} currency_pair 
       * @returns 
@@ -331,7 +659,7 @@
                  rebated_fee_currency: 'SHIB'
               }
       */
-     async function cancelOrderor(order_id, currency_pair) {
+     async function cancelOrder(order_id, currency_pair) {
          try {
              que = {
                  order_id,
@@ -413,7 +741,6 @@
          }
      }
  
-     /**Public End Point */
      /**
       * 
       * @param {} currency_pair 
@@ -447,22 +774,23 @@
                  }
              ] 
       */
-     async function pairs(currency_pair = null) {
+ 
+     async function history(currency_pair) {
          try {
-             path = `/api/v4/spot/currency_pairs/`
-             if (currency_pair) {
-                 que = {
-                     currency_pair
-                 }
-                 path = path + currency_pair
+             path = `/api/v4/spot/my_trades/`
+             que = {
+                 currency_pair
              }
-             return await _get(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
                  throw new Error(e.message || e)
              });
          } catch (error) {
              throw new Error(error.message || error)
          }
      }
+ 
+ 
+     /**Public End Point */
  
      /**
       * 
@@ -496,7 +824,7 @@
                  currency_pair
              }
  
-             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+             return await _get(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
                  throw new Error(e.message || e)
              });
          } catch (error) {
@@ -548,7 +876,7 @@
                  low_24h: '0.04265'
              }
           ]
- 
+  
       */
      async function tickers(currency_pair = null) {
          try {
@@ -558,7 +886,7 @@
                      currency_pair
                  }
              }
-             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+             return await _get(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
                  throw new Error(e.message || e)
              });
          } catch (error) {
@@ -604,40 +932,138 @@
              que = {
                  currency_pair
              }
-             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+             return await _get(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
                  throw new Error(e.message || e)
              });
          } catch (error) {
              throw new Error(error.message || error)
          }
      }
-     async function history(currency_pair) {
+ 
+     async function pairs(currency_pair = null) {
          try {
-             path = `/api/v4/spot/my_trades/`
-             que = {
-                 currency_pair
+             path = `/api/v4/spot/currency_pairs/`
+             if (currency_pair) {
+                 que = {
+                     currency_pair
+                 }
+                 path = path + currency_pair
              }
-             return await _getAuth(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+             return await _get(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
                  throw new Error(e.message || e)
              });
          } catch (error) {
              throw new Error(error.message || error)
          }
      }
-     
+     /**
+      * 
+      * @param {*} currency_pair 
+      * @param {*} interval 
+                         interval	10s
+                         interval	1m
+                         interval	5m
+                         interval	15m
+                         interval	30m
+                         interval	1h
+                         interval	4h
+                         interval	8h
+                         interval	1d
+                         interval	7d
+                         interval	30d
+      * @returns
+        [
+             [
+                 '1660829400',
+                 '2068154.5862748175',
+                 '23451.21',
+                 '23518.9',
+                 '23439.57',
+                 '23518.9',
+                 '88.077584055'
+             ]
+         ] 
+      */
+     async function candlesticks(currency_pair, interval = '15m') {
+         try {
+             path = `/api/v4/spot/candlesticks/`
+             que = {
+                 currency_pair,
+                 interval
+             }
+             return await _get(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+             throw new Error(error.message || error)
+         }
+     }
+     /**
+      * 
+      * @param {*} currency 
+      * @returns 
+      * {
+         currency: 'BTC',
+         delisted: false,
+         withdraw_disabled: false,
+         withdraw_delayed: false,
+         deposit_disabled: false,
+         trade_disabled: false,
+         chain: 'BTC'
+         }
+      * @param {} currency 
+      * @returns 
+      * [
+         {
+         currency: 'BTC',
+         delisted: false,
+         withdraw_disabled: false,
+         withdraw_delayed: false,
+         deposit_disabled: false,
+         trade_disabled: false,
+         chain: 'BTC'
+         }  
+        ]   
+      */
+     async function currencies(currency = null) {
+         try {
+             path = `/api/v4/spot/currencies/`
+             if (currency) {
+                 que = {
+                     currency
+                 }
+                 path = `/api/v4/spot/currencies/${currency}`
+             }
+             return await _get(`${API_BASE}${path}?${queryBuilder(que)}`).then(res => res.data).catch(e => {
+                 throw new Error(e.message || e)
+             });
+         } catch (error) {
+             throw new Error(error.message || error)
+         }
+     }
  
      return {
          myWallet,
          orderCreate,
          getOrder,
          getOpenOrders,
-         cancelOrderor,
+         cancelOrder,
          withdrawalStatus,
          withdrawals,
          pairs,
          trades,
          tickers,
          order_book,
-         history
+         history,
+         listOrders,
+         candlesticks,
+         currencies,
+         total_balance,
+         fee,
+         saved_address,
+         deposits_list,
+         withdrawals_list,
+         deposit_address,
+         currency_chains
      };
  }
